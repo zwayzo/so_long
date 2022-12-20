@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_lines.c                                      :+:      :+:    :+:   */
+/*   ft_hexadecimale.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moazzedd <moazzedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 02:30:05 by moazzedd          #+#    #+#             */
-/*   Updated: 2022/12/19 05:45:34 by moazzedd         ###   ########.fr       */
+/*   Created: 2022/10/22 19:36:58 by moazzedd          #+#    #+#             */
+/*   Updated: 2022/12/19 04:45:29 by moazzedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	count_lines(char *map)
+int	hexa(unsigned long long dec, int i, int flag)
 {
-	int		fd;
-	char	*s;
-	int		i;
+	int	count;
 
-	i = 0;
-	s = NULL;
-	fd = open(map, O_RDONLY);
-	while (i == 0 || ft_strlen(s) != 0)
+	count = 0;
+	if (dec < 0)
 	{
-		if (ft_strlen(s) != 0)
-			free (s);
-		i++;
-		s = get_next_line(fd);
+		dec *= -1;
+		count += ft_putchar('-');
 	}
-	free (s);
-	return (i - 1);
+	if (dec >= (unsigned long long)i)
+			count += hexa(dec / i, i, flag);
+	if (flag == 0)
+		count += ft_putchar(HEX[dec % i]);
+	else
+		count += ft_putchar(HEX_MAJ[dec % i]);
+	return (count);
 }

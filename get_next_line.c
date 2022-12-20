@@ -6,7 +6,7 @@
 /*   By: moazzedd <moazzedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 18:19:17 by moazzedd          #+#    #+#             */
-/*   Updated: 2022/12/04 21:06:08 by moazzedd         ###   ########.fr       */
+/*   Updated: 2022/12/17 19:02:29 by moazzedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ char	*get_next_line(int fd)
 
 // int main()
 // {
-// 	int fd = open("fd.txt",O_RDONLY | O_CREAT);
-// 	printf("%s",get_next_line(fd));
-// 	// fd = open("test.txt",O_RDONLY | O_CREAT);
-// 	// printf("%s",get_next_line(fd));
+// 	int fd = ("fd.txt",O_RDONLY | O_CREAT);
+// 	ft_printf("%s",get_next_line(fd));
+// 	// fd = ("test.txt",O_RDONLY | O_CREAT);
+// 	// ft_printf("%s",get_next_line(fd));
 
 // }

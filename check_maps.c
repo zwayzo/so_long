@@ -1,62 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_maps.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: moazzedd <moazzedd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/12 02:29:43 by moazzedd          #+#    #+#             */
+/*   Updated: 2022/12/19 05:47:51 by moazzedd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
-int check_maps(void)
+
+int	check_last_wall(char *s)
 {
-    int i;
-    int j;
-    char *s;
-    int len;
+	int	i;
 
-    i = 0;
-    j = 0;
-    int fd = open("maps.ber",O_RDONLY);
-    j = count_lines();
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-    s = get_next_line(fd);
-    len = ft_strlen(s);
-    while (s[i])
-    {
-        if (s[i] == '0')
-        {
-            printf("MAPS INVALID (INCOMPLET WALL)\n");
-            return (0);
-        }
-        i++;
-    }
-    i = 0;
-    while (i < j - 2)
-    {
-        s = get_next_line(fd);
-        // printf("%d---%d---%s\n",ft_strlen(s),len,s);
-        if (s[0] != '1' || s[ft_strlen(s) - 2] != '1')
-        {
-            printf("MAPS INVALID (LES COTES)\n");
-            return (0);
-        }
-        else if (ft_strlen(s)!= len)
-        {
-            // printf("---\n");
-            printf("INVALID LENGHT\n");
-            return (0);
-        }
-        i++;
-    }
-    s = get_next_line(fd);
-    if (ft_strlen(s) + 1!= len)
-    {
-        // printf("---\n");
-        printf("INVALID LENGHT\n");
-        return (0);
-    }
-    i = 0;
-    while (s[i])
-    {
-        if (s[i] == '0')
-        {
-            printf("MAPS INVALID (INCOMPLET WALL)\n");
-            return (0);
-        }
-        i++;
-    }
-    printf("MAPS VALID :)\n");
-    return (i);
+int	check_wall(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i + 1])
+	{
+		if (s[i] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	loop(t_long *so_long, int len, int i)
+{
+	while (i < so_long->longeur - 1)
+	{
+		if (so_long->maps_tab[i][0] != '1' || so_long->maps_tab[i]
+			[ft_strlen(so_long->maps_tab[i]) - 2] != '1'
+			|| ft_strlen(so_long->maps_tab[i]) != len)
+			return (0);
+		i++;
+	}
+	return (i);
+}
+
+int	check_maps(t_long *so_long)
+{
+	int		i;
+	int		len;
+
+	i = 0;
+	len = ft_strlen(so_long->maps_tab[0]);
+	if (len == 0 || check_wall(so_long->maps_tab[i]) == 0)
+		return (0);
+	i++;
+	if (loop(so_long, len, i) == 0)
+		return (0);
+	if (ft_strlen(so_long->maps_tab[so_long->longeur - 1])
+		+ 1 != len || check_last_wall(so_long->maps_tab
+			[so_long->longeur - 1]) == 0)
+		return (0);
+	return (len);
 }

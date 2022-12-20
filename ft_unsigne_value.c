@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_lines.c                                      :+:      :+:    :+:   */
+/*   ft_unsigne_value.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moazzedd <moazzedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 02:30:05 by moazzedd          #+#    #+#             */
-/*   Updated: 2022/12/19 05:45:34 by moazzedd         ###   ########.fr       */
+/*   Created: 2022/10/22 20:02:55 by moazzedd          #+#    #+#             */
+/*   Updated: 2022/12/19 04:45:29 by moazzedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	count_lines(char *map)
+int	ft_unsigne_value(unsigned int c)
 {
-	int		fd;
-	char	*s;
-	int		i;
+	int	i;
 
 	i = 0;
-	s = NULL;
-	fd = open(map, O_RDONLY);
-	while (i == 0 || ft_strlen(s) != 0)
+	if (c >= 10)
 	{
-		if (ft_strlen(s) != 0)
-			free (s);
-		i++;
-		s = get_next_line(fd);
+		i += ft_unsigne_value(c / 10);
+		i += ft_putchar((c % 10) + 48);
 	}
-	free (s);
-	return (i - 1);
+	else if (c < 10)
+		i += ft_putchar(c + 48);
+	return (i);
 }

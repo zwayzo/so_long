@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_lines.c                                      :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moazzedd <moazzedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 02:30:05 by moazzedd          #+#    #+#             */
-/*   Updated: 2022/12/19 05:45:34 by moazzedd         ###   ########.fr       */
+/*   Created: 2022/10/22 18:53:35 by moazzedd          #+#    #+#             */
+/*   Updated: 2022/12/19 04:45:29 by moazzedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	count_lines(char *map)
+int	ft_putstr(const char *s)
 {
-	int		fd;
-	char	*s;
-	int		i;
+	int	i;
 
 	i = 0;
-	s = NULL;
-	fd = open(map, O_RDONLY);
-	while (i == 0 || ft_strlen(s) != 0)
+	if (!s)
 	{
-		if (ft_strlen(s) != 0)
-			free (s);
-		i++;
-		s = get_next_line(fd);
+		write(1, "(null)", 6);
+		return (6);
 	}
-	free (s);
-	return (i - 1);
+	while (s[i])
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	return (i);
 }

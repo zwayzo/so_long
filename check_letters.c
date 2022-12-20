@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_lines.c                                      :+:      :+:    :+:   */
+/*   check_letters.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moazzedd <moazzedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 02:30:05 by moazzedd          #+#    #+#             */
-/*   Updated: 2022/12/19 05:45:34 by moazzedd         ###   ########.fr       */
+/*   Created: 2022/12/19 02:30:25 by moazzedd          #+#    #+#             */
+/*   Updated: 2022/12/19 02:45:38 by moazzedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	count_lines(char *map)
+int	check_letters(t_long *so_long)
 {
-	int		fd;
-	char	*s;
-	int		i;
+	int	i;
+	int	j;
 
 	i = 0;
-	s = NULL;
-	fd = open(map, O_RDONLY);
-	while (i == 0 || ft_strlen(s) != 0)
+	j = 0;
+	while (i < so_long->longeur)
 	{
-		if (ft_strlen(s) != 0)
-			free (s);
+		while (j < so_long->largeur)
+		{
+			if (so_long->maps_tab[i][j] != 'E' && so_long->maps_tab[i][j]
+				!= 'P' && so_long->maps_tab[i][j] != '1'
+				&& so_long->maps_tab[i][j] != '0'
+				&& so_long->maps_tab[i][j] != 'C')
+				return (0);
+			j++;
+		}
 		i++;
-		s = get_next_line(fd);
+		j = 0;
 	}
-	free (s);
-	return (i - 1);
+	return (1);
+}
+
+int	exit_function(void *out)
+{
+	(void ) out;
+	exit(0);
 }

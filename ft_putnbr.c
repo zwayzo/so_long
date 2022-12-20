@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_lines.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moazzedd <moazzedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 02:30:05 by moazzedd          #+#    #+#             */
-/*   Updated: 2022/12/19 05:45:34 by moazzedd         ###   ########.fr       */
+/*   Created: 2022/10/22 19:14:06 by moazzedd          #+#    #+#             */
+/*   Updated: 2022/12/19 04:45:29 by moazzedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	count_lines(char *map)
+int	ft_putnbr(int nb)
 {
-	int		fd;
-	char	*s;
-	int		i;
+	int				i;
+	unsigned int	n;
 
+	n = 0;
 	i = 0;
-	s = NULL;
-	fd = open(map, O_RDONLY);
-	while (i == 0 || ft_strlen(s) != 0)
+	if (nb < 0)
 	{
-		if (ft_strlen(s) != 0)
-			free (s);
-		i++;
-		s = get_next_line(fd);
+		i += ft_putchar('-');
+		n = nb * -1;
 	}
-	free (s);
-	return (i - 1);
+	else
+		n = nb;
+	if (n >= 10)
+	{
+		i += ft_putnbr(n / 10);
+		i += ft_putchar((n % 10) + 48);
+	}
+	else
+		i += ft_putchar(n + 48);
+	return (i);
 }

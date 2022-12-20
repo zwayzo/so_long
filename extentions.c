@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_lines.c                                      :+:      :+:    :+:   */
+/*   extentions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moazzedd <moazzedd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 02:30:05 by moazzedd          #+#    #+#             */
-/*   Updated: 2022/12/19 05:45:34 by moazzedd         ###   ########.fr       */
+/*   Created: 2022/12/19 05:23:39 by moazzedd          #+#    #+#             */
+/*   Updated: 2022/12/19 05:52:22 by moazzedd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	count_lines(char *map)
+int	extentions(char *map)
 {
-	int		fd;
-	char	*s;
-	int		i;
+	int	len;
+	int	j;
 
-	i = 0;
-	s = NULL;
-	fd = open(map, O_RDONLY);
-	while (i == 0 || ft_strlen(s) != 0)
+	len = ft_strlen(map);
+	j = len - 3;
+	while (len != j)
 	{
-		if (ft_strlen(s) != 0)
-			free (s);
-		i++;
-		s = get_next_line(fd);
+		if (map[len-- - 1] == 'r')
+		{
+			if (map[len-- - 1] == 'e')
+			{
+				if (map[len-- - 1] == 'b')
+				{
+					if (map[len-- - 1] == '.')
+						return (1);
+				}
+				return (0);
+			}
+			return (0);
+		}
+		return (0);
 	}
-	free (s);
-	return (i - 1);
+	return (0);
 }
