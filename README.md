@@ -1,5 +1,8 @@
 # so_long
 
+<img width="767" alt="Capture d’écran 2022-12-23 à 22 45 14" src="https://user-images.githubusercontent.com/96823772/209408094-e2535116-bd86-4623-82d7-a151a47a0a43.png">
+
+
 <img width="1212" alt="Screen Shot 2022-12-20 at 5 55 14 PM" src="https://user-images.githubusercontent.com/96823772/208722821-a2b03faf-9151-4d03-881d-e9dc53736e3c.png">
 This is a small game project from 1337/42school implemented using MiniLibX. The project is inspired by Game Freak's Pokemon Firered.
 
